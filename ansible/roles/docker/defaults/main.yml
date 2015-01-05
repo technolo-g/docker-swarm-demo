@@ -1,3 +1,5 @@
 ---
 
 start_docker_service: True
+docker_swarm_tags:
+  - 'none=none'

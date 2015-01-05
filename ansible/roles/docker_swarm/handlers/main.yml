@@ -1,0 +1,7 @@
+---
+
+- name: restart swarm
+  sudo: true
+  service: >
+    name=docker_swarm
+    state=restarted

@@ -1,0 +1,5 @@
+---
+
+docker_swarm_tags:
+  - 'disk=ssd'
+  - 'zone=internal'
