@@ -1,0 +1,10 @@
+---
+
+- name: Ship the swarm config
+  sudo: True
+  template: >
+    src=swarm_config.j2
+    dest=/etc/swarm_config
+    owner=root
+    group=root
+    mode=0644

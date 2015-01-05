@@ -1,0 +1,17 @@
+---
+
+- name: Ship the upstart config
+  sudo: True
+  template: >
+    src=docker_swarm_upstart.conf.j2
+    dest=/etc/init/docker_swarm.conf
+    owner=root
+    group=root
+    mode=0644
+
+- name: Start and enable Swarm
+  sudo: True
+  service: >
+    name=docker_swarm
+    state=started
+    enabled=True
