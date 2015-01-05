@@ -1,0 +1,7 @@
+# Docker Upstart and SysVinit configuration file
+
+# Customize location of Docker binary (especially for development testing).
+#DOCKER="/usr/local/bin/docker"
+
+# Use DOCKER_OPTS to modify the daemon startup options.
+DOCKER_OPTS="--bip=172.17.42.1/16 --dns={{ dns_server }} -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock"

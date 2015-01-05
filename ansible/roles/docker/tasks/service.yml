@@ -1,0 +1,17 @@
+---
+
+- name: Start Docker
+  sudo: true
+  service: >
+    name=docker
+    state=started
+    enabled=true
+  when: start_docker_service == True
+
+- name: Disable Docker
+  sudo: true
+  service: >
+    name=docker
+    state=stopped
+    enabled=false
+  when: start_docker_service == False

@@ -1,0 +1,7 @@
+---
+
+- include: packages.yml
+
+- include: config.yml
+
+- include: service.yml

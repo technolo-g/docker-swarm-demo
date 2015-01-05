@@ -1,0 +1,8 @@
+---
+
+- name: Install the Swarm binary
+  sudo: True
+  get_url: >
+    url=https://s3-us-west-2.amazonaws.com/mbajor-junk/swarm
+    dest=/usr/local/bin/swarm
+    mode=0775

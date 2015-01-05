@@ -1,0 +1,26 @@
+---
+
+- name: Install apt key
+  sudo: true
+  apt_key: >
+    id=36A1D7869245C8950F966E92D8576A8BA88D21E9
+    keyserver=hkp://keyserver.ubuntu.com:80
+    state=present
+
+- name: Install Docker repo
+  sudo: true
+  apt_repository: >
+    repo='deb https://get.docker.io/ubuntu docker main'
+    state=present
+
+- name: Update apt to get Docker
+  sudo: true
+  apt: >
+    update_cache=yes
+    cache_valid_time=3600
+
+- name: Install Docker package
+  sudo: true
+  apt: >
+    name=lxc-docker
+    state=present
