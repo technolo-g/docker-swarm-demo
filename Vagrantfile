@@ -33,7 +33,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |vagrant|
   vagrant.vm.define "dockerswarm01" do |config|
     config.vm.hostname = "dockerswarm01"
     config.vm.network "private_network", ip: "10.100.199.200"
-    config.vm.network "forwarded_port", guest: 2375, host: 2375
     config.vm.network "forwarded_port", guest: 2376, host: 2376
     config.vm.provision :hosts
     config.vm.provision :ansible do |ansible|
