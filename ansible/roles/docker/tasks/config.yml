@@ -1,7 +1,7 @@
 ---
 
 - name: Install /etc/default/docker
-  sudo: true
+  sudo: True
   template: >
     src=docker.default.j2
     dest=/etc/default/docker
@@ -11,3 +11,14 @@
   notify:
     - restart docker
   when: start_docker_service == True
+
+- name: Install SSL Certs
+  sudo: True
+  copy: >
+    src=tls
+    dest=/etc/pki
+    owner=root
+    group=root
+    mode=0600
+  notify:
+    - restart docker

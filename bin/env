@@ -1,0 +1,3 @@
+export DOCKER_HOST=tcp://dockerswarm01:2376
+export DOCKER_CERT_PATH="`pwd`/tls"
+export DOCKER_TLS_VERIFY=1

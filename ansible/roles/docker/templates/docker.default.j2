@@ -2,4 +2,11 @@
 # Docker Upstart and SysVinit configuration file
 
 # Use DOCKER_OPTS to modify the daemon startup options.
-DOCKER_OPTS="{% for tag in docker_swarm_tags %} --label {{ tag }}{% endfor %} --bip=172.17.42.1/16 --dns={{ dns_server }} -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock"
+DOCKER_OPTS="--dns={{ dns_server }} \
+            {% for tag in docker_swarm_tags %} --label {{ tag }}{% endfor %} \
+            -H tcp://0.0.0.0:2376 \
+            -H unix:///var/run/docker.sock \
+            --tlsverify \
+            --tlscacert=/etc/pki/tls/ca.pem \
+            --tlscert=/etc/pki/tls/{{ ansible_hostname }}-cert.pem \
+            --tlskey=/etc/pki/tls/{{ ansible_hostname }}-key.pem"
