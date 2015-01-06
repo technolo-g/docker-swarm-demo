@@ -55,11 +55,11 @@ rm -f *.csr
 
 rm -rf ../ansible/roles/docker/files/tls
 mkdir -p ../ansible/roles/docker/files/tls
-cp -rp docker* ../ansible/roles/docker/files/tls/
+mv docker* ../ansible/roles/docker/files/tls/
 cp -rp ca.pem ../ansible/roles/docker/files/tls/
 
 rm -rf ../ansible/roles/docker_swarm/files/tls
 mkdir -p ../ansible/roles/docker_swarm/files/tls
-cp -rp swarm* ../ansible/roles/docker_swarm/files/tls/
+mv swarm* ../ansible/roles/docker_swarm/files/tls/
 cp -rp ca.pem ../ansible/roles/docker_swarm/files/tls/
 
