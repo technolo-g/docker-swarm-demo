@@ -20,7 +20,7 @@ openssl rsa -passin pass:password -in client-key.pem -out client-key.pem
 
 echo 'Creating Swarm certificates (swarm-key.pem, swarm-cert.pem)'
 openssl genrsa -des3 -passout pass:password -out swarm-key.pem 2048
-openssl req -passin pass:password -subj '/CN=client' -new -key swarm-key.pem -out swarm-client.csr
+openssl req -passin pass:password -subj '/CN=dockerswarm01' -new -key swarm-key.pem -out swarm-client.csr
 echo 'extendedKeyUsage = clientAuth,serverAuth' > extfile.cnf
 openssl x509 -passin pass:password -req -days 365 -in swarm-client.csr -CA ca.pem -CAkey ca-key.pem -out swarm-cert.pem -extfile extfile.cnf
 openssl rsa -passin pass:password -in swarm-key.pem -out swarm-key.pem
