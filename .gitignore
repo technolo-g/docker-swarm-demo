@@ -1,3 +1,4 @@
 .idea
-ansible/roles/docker/files/tls
-ansible/roles/docker_swarm/files/tls
+/tls
+/ansible/roles/docker/files/tls
+/ansible/roles/docker_swarm/files/tls
