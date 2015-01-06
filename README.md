@@ -13,6 +13,8 @@
 ```
 
 # Starting things up
+It is required to generate the SSL certificates required before attempting to
+run Vagrant/Ansible.
 ```
 # Generate SSL
 ./bin/gen_ssl.sh
