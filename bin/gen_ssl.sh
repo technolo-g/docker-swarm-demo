@@ -11,12 +11,12 @@ openssl req -new -passin pass:password \
         -subj '/CN=Non-Prod Test CA/C=US' \
         -x509 -days 365 -key ca-key.pem -out ca.pem
 
-echo 'Creating Docker client certificates (docker-key.pem, docker-cert.pem)'
-openssl genrsa -des3 -passout pass:password -out docker-key.pem 2048
-openssl req -passin pass:password -subj '/CN=client' -new -key docker-key.pem -out docker-client.csr
+echo 'Creating Docker client certificates (client-key.pem, client-cert.pem)'
+openssl genrsa -des3 -passout pass:password -out client-key.pem 2048
+openssl req -passin pass:password -subj '/CN=client' -new -key client-key.pem -out client.csr
 echo extendedKeyUsage = clientAuth > extfile.cnf
-openssl x509 -passin pass:password -req -days 365 -in docker-client.csr -CA ca.pem -CAkey ca-key.pem -out docker-cert.pem -extfile extfile.cnf
-openssl rsa -passin pass:password -in docker-key.pem -out docker-key.pem
+openssl x509 -passin pass:password -req -days 365 -in client.csr -CA ca.pem -CAkey ca-key.pem -out client-cert.pem -extfile extfile.cnf
+openssl rsa -passin pass:password -in client-key.pem -out client-key.pem
 
 echo 'Creating Swarm certificates (swarm-key.pem, swarm-cert.pem)'
 openssl genrsa -des3 -passout pass:password -out swarm-key.pem 2048
@@ -55,8 +55,11 @@ rm -f *.csr
 
 rm -rf ../ansible/roles/docker/files/tls
 mkdir -p ../ansible/roles/docker/files/tls
-mv docker* ../ansible/roles/docker/files/tls/
+cp -rp docker* ../ansible/roles/docker/files/tls/
+cp -rp ca.pem ../ansible/roles/docker/files/tls/
 
 rm -rf ../ansible/roles/docker_swarm/files/tls
 mkdir -p ../ansible/roles/docker_swarm/files/tls
-mv swarm* ../ansible/roles/docker_swarm/files/tls/
+cp -rp swarm* ../ansible/roles/docker_swarm/files/tls/
+cp -rp ca.pem ../ansible/roles/docker_swarm/files/tls/
+

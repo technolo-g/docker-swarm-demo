@@ -10,3 +10,14 @@
     mode=0644
   notify:
     - restart swarm
+
+- name: Install SSL Certs
+  sudo: True
+  copy: >
+    src=tls
+    dest=/etc/pki
+    owner=root
+    group=root
+    mode=0600
+  notify:
+    - restart swarm
