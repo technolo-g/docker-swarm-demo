@@ -20,7 +20,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |vagrant|
     vagrant.vm.define "dockerhost0#{i}" do |config|
       config.vm.hostname = "dockerhost0#{i}"
       config.vm.network "private_network", ip: "10.100.199.20#{i}"
-      config.vm.provision :hosts
       config.vm.provision :ansible do |ansible|
         ansible.playbook = 'ansible/docker_host.yml'
         ansible.groups   = {'dockerhosts' => ["dockerhost0#{i}"], 'local' => ['localhost']}
