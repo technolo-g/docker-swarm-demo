@@ -3,6 +3,6 @@
 - name: Install the Swarm binary
   sudo: True
   get_url: >
-    url=https://s3-us-west-2.amazonaws.com/mbajor-junk/swarm
+    url=https://s3-us-west-2.amazonaws.com/technolo-g/bins/ubuntu/trusty/swarm
     dest=/usr/local/bin/swarm
     mode=0775
