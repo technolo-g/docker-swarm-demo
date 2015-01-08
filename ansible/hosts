@@ -1,0 +1,10 @@
+[local]
+localhost
+
+[metaldocker]
+bld-docker-22.f4tech.com
+bld-docker-23.f4tech.com
+bld-docker-24.f4tech.com
+
+[metalswarm]
+bld-swarm-01.f4tech.com

@@ -21,3 +21,5 @@
     mode=0600
   notify:
     - restart swarm
+  when:
+    use_tls

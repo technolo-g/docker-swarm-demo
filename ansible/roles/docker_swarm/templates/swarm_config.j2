@@ -1,3 +1,3 @@
 {% for node in cluster_nodes %}
-{{ node }}
+http{% if use_tls %}s{% endif %}://{{ node }}:{{ docker_port }}
 {% endfor %}

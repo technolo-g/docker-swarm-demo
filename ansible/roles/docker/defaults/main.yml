@@ -1,5 +1,7 @@
 ---
 
 start_docker_service: True
+use_tls: False
+docker_port: 2375
 docker_swarm_tags:
   - 'none=none'

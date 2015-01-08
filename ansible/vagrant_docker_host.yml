@@ -1,0 +1,11 @@
+---
+
+- hosts: dockerhosts
+  sudo: false
+  vars:
+    dns_server: 8.8.8.8
+    user: vagrant
+  remote_user: "{{ user }}"
+  roles:
+    - role: base
+    - role: docker

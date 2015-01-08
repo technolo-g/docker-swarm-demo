@@ -1,0 +1,21 @@
+---
+
+- hosts: dockerswarm
+  sudo: false
+  vars:
+    dns_server: 8.8.8.8
+    user: vagrant
+    start_docker_service: False
+    packing_strategy: random
+    cluster_nodes:
+      - dockerhost01:2376
+      - dockerhost02:2376
+      - dockerhost03:2376
+      - dockerhost04:2376
+      - dockerhost05:2376
+
+  remote_user: "{{ user }}"
+  roles:
+    - role: base
+    - role: docker
+    - role: docker_swarm

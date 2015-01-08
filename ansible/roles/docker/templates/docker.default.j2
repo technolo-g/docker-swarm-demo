@@ -4,9 +4,14 @@
 # Use DOCKER_OPTS to modify the daemon startup options.
 DOCKER_OPTS="--dns={{ dns_server }} \
             {% for tag in docker_swarm_tags %} --label {{ tag }}{% endfor %} \
-            -H tcp://0.0.0.0:2376 \
-            -H unix:///var/run/docker.sock \
+            {% if use_tls %}
             --tlsverify \
             --tlscacert=/etc/pki/tls/ca.pem \
             --tlscert=/etc/pki/tls/{{ ansible_hostname }}-cert.pem \
-            --tlskey=/etc/pki/tls/{{ ansible_hostname }}-key.pem"
+            --tlskey=/etc/pki/tls/{{ ansible_hostname }}-key.pem \
+            {%  endif %}
+            {% if docker_opts %}{%  for opt in docker_opts %}
+            {{ opt }}
+            {% endfor %}{% endif %}
+            -H unix:///var/run/docker.sock \
+            -H tcp://0.0.0.0:{{ docker_port }}"

@@ -21,7 +21,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |vagrant|
       config.vm.hostname = "dockerhost0#{i}"
       config.vm.network "private_network", ip: "10.100.199.20#{i}"
       config.vm.provision :ansible do |ansible|
-        ansible.playbook = 'ansible/docker_host.yml'
+        ansible.playbook = 'ansible/vagrant_docker_host.yml'
         ansible.groups   = {'dockerhosts' => ["dockerhost0#{i}"], 'local' => ['localhost']}
         ansible.raw_arguments = '--timeout=30'
         ansible.host_key_checking = false
@@ -36,7 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |vagrant|
     config.vm.network "forwarded_port", guest: 2376, host: 2376
     config.vm.provision :hosts
     config.vm.provision :ansible do |ansible|
-      ansible.playbook = 'ansible/docker_swarm.yml'
+      ansible.playbook = 'ansible/vagrant_docker_swarm.yml'
       ansible.groups   = {'dockerswarm' => ["dockerswarm01"], 'local' => ['localhost']}
       ansible.raw_arguments = '--timeout=30'
       ansible.host_key_checking = false
