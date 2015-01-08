@@ -1,0 +1,5 @@
+---
+
+docker_images:
+  - ubuntu
+  - nginx

@@ -9,12 +9,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |vagrant|
   end
 
   vagrant.vm.provider "vmware_fusion" do |v|
-    v.vmx["memsize"] = '2048'
-    v.vmx["numvcpus"] = '2'
+    v.vmx["memsize"] = '1024'
+    v.vmx["numvcpus"] = '1'
   end
 
   # Machine Configuration
-
   # Docker Hosts
   (1..5).each do |i|
     vagrant.vm.define "dockerhost0#{i}" do |config|
@@ -22,7 +21,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |vagrant|
       config.vm.network "private_network", ip: "10.100.199.20#{i}"
       config.vm.provision :ansible do |ansible|
         ansible.playbook = 'ansible/vagrant_docker_host.yml'
-        ansible.groups   = {'dockerhosts' => ["dockerhost0#{i}"], 'local' => ['localhost']}
+        ansible.groups   = {'vagrant_dockerhosts' => ["dockerhost0#{i}"], 'local' => ['localhost']}
         ansible.raw_arguments = '--timeout=30'
         ansible.host_key_checking = false
       end
@@ -37,7 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |vagrant|
     config.vm.provision :hosts
     config.vm.provision :ansible do |ansible|
       ansible.playbook = 'ansible/vagrant_docker_swarm.yml'
-      ansible.groups   = {'dockerswarm' => ["dockerswarm01"], 'local' => ['localhost']}
+      ansible.groups   = {'vagrant_dockerswarm' => ["dockerswarm01"], 'local' => ['localhost']}
       ansible.raw_arguments = '--timeout=30'
       ansible.host_key_checking = false
     end

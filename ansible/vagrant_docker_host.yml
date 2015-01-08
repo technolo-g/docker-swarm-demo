@@ -1,6 +1,6 @@
 ---
 
-- hosts: dockerhosts
+- hosts: vagrant_dockerhosts
   sudo: false
   vars:
     dns_server: 8.8.8.8
