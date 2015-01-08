@@ -10,7 +10,7 @@ DOCKER_OPTS="--dns={{ dns_server }} \
             --tlscert=/etc/pki/tls/{{ ansible_hostname }}-cert.pem \
             --tlskey=/etc/pki/tls/{{ ansible_hostname }}-key.pem \
             {%  endif %}
-            {% if docker_opts %}{%  for opt in docker_opts %}
+            {% if docker_opts is defined %}{%  for opt in docker_opts %}
             {{ opt }}
             {% endfor %}{% endif %}
             -H unix:///var/run/docker.sock \
