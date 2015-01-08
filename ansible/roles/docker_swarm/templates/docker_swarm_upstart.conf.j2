@@ -12,6 +12,7 @@ script
     --tlskey=/etc/pki/tls/swarm-key.pem  \
     --discovery file:///etc/swarm_config \
 {% endif %}
+    --discovery file:///etc/swarm_config \
     -H tcp://0.0.0.0:{{ docker_port }} \
     -strategy {{  packing_strategy }}
 end script
