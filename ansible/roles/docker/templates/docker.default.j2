@@ -2,7 +2,7 @@
 # Docker Upstart and SysVinit configuration file
 
 # Use DOCKER_OPTS to modify the daemon startup options.
-DOCKER_OPTS="--dns={{ dns_server }} \
+DOCKER_OPTS="{% for server in dns_servers %}--dns={{ server }} {% endfor %} \
             {% for tag in docker_swarm_tags %} --label {{ tag }}{% endfor %} \
             {% if use_tls %}
             --tlsverify \

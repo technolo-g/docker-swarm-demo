@@ -3,7 +3,9 @@
 - hosts: vagrant_dockerhosts
   sudo: false
   vars:
-    dns_server: 8.8.8.8
+    dns_servers:
+      - 8.8.8.8
+      - 8.8.4.4
     user: vagrant
   remote_user: "{{ user }}"
   roles:
