@@ -33,6 +33,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |vagrant|
     config.vm.hostname = "dockerswarm01"
     config.vm.network "private_network", ip: "10.100.199.200"
     config.vm.network "forwarded_port", guest: 2376, host: 2376
+    config.vm.network "forwarded_port", guest: 2375, host: 2375
     config.vm.provision :hosts
     config.vm.provision :ansible do |ansible|
       ansible.playbook = 'ansible/vagrant_docker_swarm.yml'
