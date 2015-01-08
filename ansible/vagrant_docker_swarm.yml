@@ -1,13 +1,7 @@
 ---
 
 - hosts: vagrant_dockerswarm
-  sudo: false
-  vars:
-    dns_server: 8.8.8.8
-    user: vagrant
-    start_docker_service: False
-    packing_strategy: random
-    use_tls: False
+  sudo: False
   remote_user: "{{ user }}"
   roles:
     - role: base

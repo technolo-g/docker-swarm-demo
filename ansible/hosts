@@ -10,11 +10,11 @@ bld-docker-24.f4tech.com
 bld-swarm-01.f4tech.com
 
 [vagrant_dockerhosts]
-dockerhost01 ansible_ssh_private_key_file=../.vagrant/machines/dockerhost01/vmware_fusion/private_key ansible_ssh_user=vagrant
-dockerhost02 ansible_ssh_private_key_file=../.vagrant/machines/dockerhost02/vmware_fusion/private_key ansible_ssh_user=vagrant
-dockerhost03 ansible_ssh_private_key_file=../.vagrant/machines/dockerhost03/vmware_fusion/private_key ansible_ssh_user=vagrant
-dockerhost04 ansible_ssh_private_key_file=../.vagrant/machines/dockerhost04/vmware_fusion/private_key ansible_ssh_user=vagrant
-dockerhost05 ansible_ssh_private_key_file=../.vagrant/machines/dockerhost05/vmware_fusion/private_key ansible_ssh_user=vagrant
+dockerhost01 ansible_ssh_private_key_file=../.vagrant/machines/dockerhost01/vmware_fusion/private_key
+dockerhost02 ansible_ssh_private_key_file=../.vagrant/machines/dockerhost02/vmware_fusion/private_key
+dockerhost03 ansible_ssh_private_key_file=../.vagrant/machines/dockerhost03/vmware_fusion/private_key
+dockerhost04 ansible_ssh_private_key_file=../.vagrant/machines/dockerhost04/vmware_fusion/private_key
+dockerhost05 ansible_ssh_private_key_file=../.vagrant/machines/dockerhost05/vmware_fusion/private_key
 
 [vagrant_dockerswarm]
-dockerswarm01 ansible_ssh_private_key_file=../.vagrant/machines/dockerswarm01/vmware_fusion/private_key ansible_ssh_user=vagrant
+dockerswarm01 ansible_ssh_private_key_file=../.vagrant/machines/dockerswarm01/vmware_fusion/private_key
