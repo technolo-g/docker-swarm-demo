@@ -1,9 +1,19 @@
 ---
 
 - hosts: vagrant_dockerswarm
-  sudo: False
+  sudo: true
   remote_user: "{{ user }}"
+  vars:
+    consul_is_ui: true
+    consul_is_server: true
+    consul_datacenter: "test"
+    consul_bootstrap: true
+    consul_node_name: "vagrant"
+    consul_bind_address: "{{ ansible_default_ipv4['address'] }}"
+    nginx_remove_default: true
+
   roles:
     - role: base
     - role: docker
     - role: docker_swarm
+    - role: franklinkim.consul
