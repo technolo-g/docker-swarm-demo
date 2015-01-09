@@ -3,6 +3,9 @@
 - hosts: vagrant_dockerhosts
   sudo: False
   remote_user: "{{ user }}"
+  vars:
+    swarm_discovery: consul
+    swarm_discovery_string: 'consul://dockerswarm01/swarm'
   roles:
     - role: base
     - role: docker

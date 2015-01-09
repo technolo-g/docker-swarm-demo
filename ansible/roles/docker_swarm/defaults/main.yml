@@ -1,5 +1,7 @@
 ---
 
-use_tls: False
+use_tls: false
 packing_strategy: random
 docker_port: 2375
+swarm_discovery: file
+swarm_discovery_string: 'file:///etc/swarm_config'

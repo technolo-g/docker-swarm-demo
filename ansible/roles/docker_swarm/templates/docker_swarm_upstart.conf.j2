@@ -10,9 +10,8 @@ script
     --tlscacert=/etc/pki/tls/ca.pem \
     --tlscert=/etc/pki/tls/swarm-cert.pem \
     --tlskey=/etc/pki/tls/swarm-key.pem  \
-    --discovery file:///etc/swarm_config \
 {% endif %}
-    --discovery file:///etc/swarm_config \
+    --discovery {{ swarm_discovery_string }} \
     -H tcp://0.0.0.0:{{ docker_port }} \
     -strategy {{  packing_strategy }}
 end script
