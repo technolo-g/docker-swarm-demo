@@ -3,9 +3,3 @@
 - name: update apt
   sudo: true
   apt: update_cache=yes cache_valid_time=3600
-
-- name: install my ssh key 
-  sudo: true
-  authorized_key: >
-    user=root
-    key="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQHAEyl4SJjZnrwPxgSgX7s8h+gdnt5bJukBb4d7bn36b3Snn1AdNUjNmVOVWvP5WHZ/maZzFBBOgpFN+LH/SlAcrq0/DUtuLNQA5viTW0bCfxPSzOPe9d3YZk+Ryn8yqFWX5XfGBp9SlADHIOnA9S/0Dkny/n98KXyyekBCL536oWV3LBdzyc8WniKp+8s2aCooVzPyS0YGgD0szaNTCcSusDatpsfwVwEV0cs0tCKq6HbkFP426fLp2kcZKtt2Bh/l9xlIMsRM7UwtyiDLm/cc/05vKdxbmnSk87WhXTSgwmNBwNJEZr83yG5UfLqcnEBasGdvvuorbF77GjldNh mbajor@mbajor-mbpr"

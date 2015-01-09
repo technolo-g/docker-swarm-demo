@@ -22,3 +22,4 @@
     mode=0600
   notify:
     - restart docker
+  when: use_tls == True

@@ -4,11 +4,15 @@ console log
 start on filesystem
 stop on runlevel [!2345]
 script
-  /usr/local/bin/swarm manage --tlsverify \
+/usr/local/bin/swarm manage \
+{% if use_tls %}
+    --tlsverify \
     --tlscacert=/etc/pki/tls/ca.pem \
     --tlscert=/etc/pki/tls/swarm-cert.pem \
     --tlskey=/etc/pki/tls/swarm-key.pem  \
     --discovery file:///etc/swarm_config \
-    -H tcp://0.0.0.0:2376 \
-    -strategy random
+{% endif %}
+    --discovery file:///etc/swarm_config \
+    -H tcp://0.0.0.0:{{ docker_port }} \
+    -strategy {{  packing_strategy }}
 end script

@@ -1,6 +1,10 @@
 # Docker Swarm Etc..
 
 # Requirements
+There are a few requirements to get
+ansible
+sshpass
+
 
 - /etc/hosts
 ```
@@ -27,4 +31,19 @@ vagrant up
 ```
 source bin/env
 docker ps
+```
+
+# Working with the metal
+```
+cd ansible/
+
+# Configure the Docker hosts
+ansible-playbook --ask-pass metal_docker_host.yml
+
+# Pull the docker images
+ansible-playbook --ask-pass metal_docker_images.yml
+
+# Start swarm
+ansible-playbook --ask-pass metal_docker_swarm.yml
+
 ```

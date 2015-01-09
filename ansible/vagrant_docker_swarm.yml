@@ -1,0 +1,9 @@
+---
+
+- hosts: vagrant_dockerswarm
+  sudo: False
+  remote_user: "{{ user }}"
+  roles:
+    - role: base
+    - role: docker
+    - role: docker_swarm

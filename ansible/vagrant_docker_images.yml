@@ -1,0 +1,10 @@
+---
+
+- hosts: vagrant_dockerhosts
+  sudo: True
+  remote_user: "{{ user }}"
+  tasks:
+    - name: Pull images
+      command: >
+        docker pull {{ item }}:latest
+      with_items: docker_images
