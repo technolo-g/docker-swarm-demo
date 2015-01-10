@@ -1,0 +1,45 @@
+---
+# For more information about default variables see:
+# http://www.ansibleworks.com/docs/playbooks_variables.html#id26
+#
+# nginx_sites:
+#   - id: foo (required)
+#     name: foo.com (required)
+#     ip: '*'
+#     port: 80
+#     state: present
+#     add_webroot: no
+#     template: path/to/template.j2
+#     aliases: []
+#     redirects: []
+#     ssl:
+#       port: 443
+#       key_name: mykey
+#       cert_name: mycert
+#     rules: []
+#     auth:
+#       name: foo
+#       file: foo
+#     append: ''
+#
+
+# run as a less privileged user for security reasons.
+nginx_user: www-data
+# auto or a number
+nginx_worker_processes: auto
+nginx_worker_connections: 768
+# default settings
+nginx_sendfile: 'on'
+nginx_tcp_nopush: 'on'
+nginx_tcp_nodelay: 'on'
+nginx_keepalive_timeout: 54
+nginx_types_hash_max_size: 2048
+nginx_server_tokens: 'off'
+# remove default site
+nginx_remove_default: no
+# start on boot
+nginx_service_enabled: yes
+# current state: started, stopped
+nginx_service_state: started
+# enabled/disabled sites
+nginx_sites: []

@@ -1,0 +1,33 @@
+server {
+  server_name consul.local;
+  root /var/www/consul/htdocs;
+
+  # --- listen ----------------------------------------------------------------
+
+  listen *:80;
+
+
+    # --- rule ------------------------------------------------------------------
+    include rules/gzip.conf;
+    include rules/security.conf;
+
+
+  # --- locations -------------------------------------------------------------
+
+
+  location / {
+      proxy_pass http://127.0.0.1:8500;
+      {%- if consul_ui_require_auth -%}
+      auth_basic "Restricted";
+      auth_basic_user_file {{ consul_ui_auth_user_file }};
+      {% endif %}
+  }
+
+
+
+  # --- logging ---------------------------------------------------------------
+
+  error_log /var/log/nginx/error-consul.log;
+  access_log /var/log/nginx/access-consul.log;
+
+  }

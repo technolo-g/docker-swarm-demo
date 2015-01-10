@@ -1,0 +1,21 @@
+---
+
+- name: Disabling default site
+  file: >
+    path=/etc/nginx/sites-enabled/default
+    state=absent
+  when: nginx_remove_default
+  tags:
+    - web
+    - nginx
+    - remove_default
+
+- name: Removing default host
+  file: >
+    path=/etc/nginx/sites-available/default
+    state=absent
+  when: nginx_remove_default
+  tags:
+    - web
+    - nginx
+    - remove_default

@@ -1,0 +1,16 @@
+- name: update apt
+  apt: >
+    update_cache=yes
+    cache_valid_time=3600
+
+- name: install deps
+  apt: >
+    pkg=dnsmasq
+    state=installed
+
+- name: configure dnsmasq
+  copy: >
+    content='server=/{{ consul_domain }}/127.0.0.1#8600'
+    dest=/etc/dnsmasq.d/10-consul
+  notify:
+    - restart dnsmasq

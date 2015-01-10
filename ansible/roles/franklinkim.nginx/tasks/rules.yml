@@ -1,0 +1,13 @@
+---
+
+- name: Adding rules
+  copy: >
+    src=etc-nginx-rules/
+    dest=/etc/nginx/rules/
+    owner=root
+    group=root
+    mode=0644
+  tags:
+    - web
+    - nginx
+    - rules

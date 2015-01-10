@@ -1,0 +1,31 @@
+---
+
+- name: Creating certs dir
+  include: >
+    create_dir.yml
+    item={{ openssl_certs_path }}
+    mode="0755"
+  tags:
+    - system
+    - openssl
+    - create
+
+- name: Creating keys dir
+  include: >
+    create_dir.yml
+    item={{ openssl_keys_path }}
+    mode="0700"
+  tags:
+    - system
+    - openssl
+    - create
+
+- name: Creating self-signed server SSL cert
+  command: >
+    openssl req -new -nodes -x509 -subj "/C={{ item.country|default('') }}/ST={{ item.state|default('') }}/L={{ item.city|default('') }}/O={{ item.organization|default('') }}/OU={{ item.unit|default('') }}/{% if item.domains is defined %}{% for domain in item.domains %}CN={{ domain }}/{% endfor %}{% else %}CN={{ item.name }}/{% endif %}emailAddress={{ item.email|default('') }}" -days {{ item.days|default(3650) }} -keyout {{ openssl_keys_path }}/{{ item.name }}.key -out {{ openssl_certs_path }}/{{ item.name }}.crt -extensions v3_ca
+    creates={{ openssl_certs_path }}/{{ item.name }}.crt
+  with_items: openssl_self_signed
+  tags:
+    - system
+    - openssl
+    - create

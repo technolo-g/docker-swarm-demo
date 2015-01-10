@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  roles:
+    - franklinkim.htpasswd
+  vars:
+    htpasswd:
+      - name: myapp
+        users:
+        - { name: user, password: secret }
+
