@@ -5,7 +5,7 @@
   remote_user: "{{ user }}"
   vars:
     swarm_discovery: consul
-    swarm_discovery_string: 'consul://dockerswarm01/swarm'
+    swarm_discovery_string: "consul://{{ consul_host }}/swarm"
   roles:
     - role: base
     - role: docker

@@ -3,6 +3,7 @@
 user: vagrant
 start_docker_service: False
 packing_strategy: random
+consul_host: dockerswarm01
 
 cluster_nodes:
   - dockerhost01

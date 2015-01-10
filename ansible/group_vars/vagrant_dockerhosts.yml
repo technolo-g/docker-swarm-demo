@@ -1,6 +1,7 @@
 ---
 
 user: vagrant
+consul_host: dockerswarm01
 
 dns_servers:
   - 8.8.8.8
