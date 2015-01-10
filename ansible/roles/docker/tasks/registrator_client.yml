@@ -1,0 +1,27 @@
+---
+
+- name: Install the Registrator binary
+  sudo: true
+  get_url: >
+    url=https://s3-us-west-2.amazonaws.com/technolo-g/bins/ubuntu/trusty/registrator
+    dest=/usr/local/bin/registrator
+    mode=0775
+
+- name: Install the registrator upstart job
+  sudo: true
+  template: >
+    src=registrator_upstart.conf.j2
+    dest=/etc/init/registrator.conf
+     owner=root
+     group=root
+     mode=0644
+  notify: restart registrator
+  when: start_docker_service == true
+
+- name: Start and enable registrator
+  sudo: true
+  service: >
+    name=registrator
+    state=started
+    enabled=true
+  when: start_docker_service == true

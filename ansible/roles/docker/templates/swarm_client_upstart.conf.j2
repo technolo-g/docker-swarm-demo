@@ -1,0 +1,12 @@
+description "Docker Swarm Client"
+author "Matt"
+console log
+start on network
+stop on runlevel [!2345]
+post-stop exec sleep 10
+script
+/usr/local/bin/swarm join \
+  --discovery {{ swarm_discovery_string }} \
+  --addr={{ ansible_default_ipv4['address'] }}:2375
+end script
+respawn

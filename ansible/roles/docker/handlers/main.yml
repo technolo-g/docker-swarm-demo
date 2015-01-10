@@ -5,3 +5,15 @@
   service: >
     name=docker
     state=restarted
+
+- name: restart swarm client
+  sudo: true
+  service: >
+    name=swarm_client
+    state=restarted
+
+- name: restart registrator
+  sudo: true
+  service: >
+    name=registrator
+    state=restarted

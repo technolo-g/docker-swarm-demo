@@ -16,4 +16,4 @@
   service: >
     name=docker_swarm
     state=started
-    enabled=True
+    enabled=true

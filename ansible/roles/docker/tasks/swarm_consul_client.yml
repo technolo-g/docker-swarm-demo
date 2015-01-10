@@ -1,0 +1,28 @@
+---
+
+- name: Install the Swarm binary
+  sudo: true
+  get_url: >
+    url=https://s3-us-west-2.amazonaws.com/technolo-g/bins/ubuntu/trusty/swarm
+    dest=/usr/local/bin/swarm
+    mode=0775
+
+- name: Ship the upstart config
+  sudo: True
+  template: >
+    src=swarm_client_upstart.conf.j2
+    dest=/etc/init/swarm_client.conf
+    owner=root
+    group=root
+    mode=0644
+  notify:
+    - restart swarm client
+  when: start_docker_service
+
+- name: Start and enable Swarm
+  sudo: True
+  service: >
+    name=swarm_client
+    state=started
+    enabled=true
+  when: start_docker_service

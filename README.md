@@ -47,3 +47,16 @@ ansible-playbook --ask-pass metal_docker_images.yml
 ansible-playbook --ask-pass metal_docker_swarm.yml
 
 ```
+
+## Included Projects
+
+Registrator
+- https://github.com/progrium/registrator
+
+Docker Swarm
+- https://github.com/docker/swarm
+
+Consul
+- https://github.com/hashicorp/consul
+
+

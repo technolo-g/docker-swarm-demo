@@ -1,0 +1,17 @@
+---
+
+- hosts: local
+  connection: local
+  gather_facts: False
+  vars:
+    docker_host: "{{ lookup('env','DOCKER_HOST') }}"
+  tasks:
+  - name: Run an Nginx container
+    docker: >
+      docker_url={{ docker_host }}
+      image=nginx:latest
+      publish_all_ports=True
+      hostname=nginx
+      state=running
+      count=10
+    register: nginx_container
