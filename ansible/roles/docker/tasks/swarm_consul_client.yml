@@ -17,6 +17,7 @@
     mode=0644
   notify:
     - restart swarm client
+  when: start_docker_service
 
 - name: Start and enable Swarm
   sudo: True
@@ -24,3 +25,4 @@
     name=swarm_client
     state=started
     enabled=true
+  when: start_docker_service
