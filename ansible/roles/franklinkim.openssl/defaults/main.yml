@@ -1,0 +1,34 @@
+---
+# For more information about default variables see:
+# http://www.ansibleworks.com/docs/playbooks_variables.html#id26
+#
+# openssl_keys:
+#   - { name: mykey, key: "mykeycontents" }
+# openssl_certs:
+#   - { name: mycert, cert: "mycertcontents" }
+# openssl_self_signed:
+#   - { name: 'foobar.com', domains: ['*.foobar.com', 'foobar.com'], country: 'DE', state: 'Bavaria', city: 'Munich', organization: 'Foo Bar', unit: '', email: 'foo@bar.com', days: 3650 }
+# openssl_config:
+#   default_bits: 2048
+#   countryName_default: DE
+#   stateOrProvinceName_default: Bavaria
+#   localityName_default: Munich
+#   organizationName_default: 'My Organization'
+#   organizationalUnitName_default: 'My Organization Unit'
+#   commonName_default: 'foobar.com'
+# openssl_config_template: templates/openssl.cnf.j2
+
+# keys to import
+openssl_keys: []
+# certificates to import
+openssl_certs: []
+# path to certificates
+openssl_certs_path: /etc/ssl/certs
+# path to keys
+openssl_keys_path: /etc/ssl/private
+# self signed certificates
+openssl_self_signed: []
+# config variables
+openssl_config: {}
+# config template to install, relative to the ansible repository root
+openssl_config_template:

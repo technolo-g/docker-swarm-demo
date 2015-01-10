@@ -1,0 +1,12 @@
+---
+# For more information about default variables see:
+# http://www.ansibleworks.com/docs/playbooks_variables.html#id26
+#
+# htpasswd:
+#   - name: myapp
+#     users:
+#       - { name: user1, password: secret1 }
+#       - { name: user1, password: secret2, crypt: [apr_md5_crypt | des_crypt | ldap_sha1 | plaintext] }
+
+# list of entries
+htpasswd: []

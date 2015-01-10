@@ -1,0 +1,22 @@
+{% for value in item.redirects|default([]) %}
+server {
+  server_name {{ value }};
+  listen {{ item.ip|default('*') }}:{{item.port|default(80)}};
+  {% if item.ssl is defined %}
+  listen {{ item.ip|default('*') }}:{{item.ssl.port|default(443)}} ssl;
+  {% endif %}
+
+  {% if item.ssl is defined %}
+  # --- ssl -------------------------------------------------------------------
+
+  include rules/ssl.conf;
+
+  ssl_certificate {{ openssl_certs_path }}/{{ item.ssl.cert_name|default('server') }}.crt;
+  ssl_certificate_key {{ openssl_keys_path }}/{{ item.ssl.key_name|default('server') }}.key;
+  {% endif %}
+
+  # --- redirects --------------------------------------------------------------
+
+  rewrite ^/(.*)$ $scheme://{{ item.name }}/$1 permanent;
+}
+{% endfor %}

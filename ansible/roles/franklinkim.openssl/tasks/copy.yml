@@ -1,0 +1,27 @@
+---
+
+- name: Copying ssl keys
+  copy: >
+    content="{{ item.key }}"
+    dest={{ openssl_keys_path }}/{{ item.name }}.key
+    owner=root
+    group=root
+    mode=0600
+  with_items: openssl_keys
+  tags:
+    - system
+    - openssl
+    - copy
+
+- name: copying ssl certs
+  copy: >
+    content="{{ item.cert }}"
+    dest={{ openssl_certs_path }}/{{ item.name }}.crt
+    owner=root
+    group=root
+    mode=0644
+  with_items: openssl_certs
+  tags:
+    - system
+    - openssl
+    - copy

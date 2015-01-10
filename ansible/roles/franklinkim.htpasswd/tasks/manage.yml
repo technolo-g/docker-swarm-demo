@@ -1,0 +1,19 @@
+---
+
+- name: Adding htpasswd files
+  htpasswd: >
+    path=/etc/htpasswd/{{ item.0.name }}
+    name={{ item.1.name }}
+    password={{ item.1.password }}
+    crypt_scheme={{ item.1.crypt|default('apr_md5_crypt') }}
+    owner=root
+    group=root
+    mode=0644
+  with_subelements:
+    - htpasswd
+    - users
+  tags:
+    - web
+    - apache2
+    - htpasswd
+    - manage

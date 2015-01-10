@@ -1,0 +1,71 @@
+server {
+  server_name {{ item.name }}{% for value in item.aliases|default([]) %} {{ value }}{% endfor %};
+  root /var/www/{{ item.id }}/htdocs;
+
+  # --- listen ----------------------------------------------------------------
+
+  listen {{ item.ip|default('*') }}:{{item.port|default(80)}};
+  {% if item.ssl is defined %}
+  listen {{ item.ip|default('*') }}:{{item.ssl.port|default(443)}} ssl;
+  {% endif %}
+
+  {% if item.ssl is defined %}
+  # --- ssl -------------------------------------------------------------------
+  include rules/ssl.conf;
+
+  ssl_certificate {{ openssl_certs_path }}/{{ item.ssl.cert_name|default('server') }}.crt;
+  ssl_certificate_key {{ openssl_keys_path }}/{{ item.ssl.key_name|default('server') }}.key;
+  {% endif %}
+
+  {% if item.rules is defined %}
+  # --- rule ------------------------------------------------------------------
+  {% for value in item.rules %}
+  include rules/{{ value }}.conf;
+  {% endfor %}
+  {% endif %}
+
+  {% if item.auth is defined %}
+  # --- auth ------------------------------------------------------------------
+
+  auth_basic "{{ item.auth.name|default(item.id) }}";
+  auth_basic_user_file /etc/htpasswd/{{ item.auth.file|default(item.id) }};
+  {% endif %}
+
+  # --- locations -------------------------------------------------------------
+
+  {% if item.proxy_pass is defined %}
+  
+  location {{ item.proxy_pass.location }} {
+      proxy_pass {{ item.proxy_pass.target }};
+  }
+    
+  {% else %}
+  
+  location / {
+    try_files $uri $uri/ =404;
+  }
+  
+  {% endif %}
+  
+  {% if item.status_allow_address is defined %}
+  
+  location /nginx_status {
+    stub_status on;
+    access_log   off;
+    allow {{ status_allow_address }};
+    deny all;
+  }
+
+  {% endif %}
+
+  # --- logging ---------------------------------------------------------------
+
+  error_log /var/log/nginx/error-{{ item.id }}.log;
+  access_log /var/log/nginx/access-{{ item.id }}.log;
+
+  {% if item.append is defined %}
+  # --- appended --------------------------------------------------------------
+
+  {{ item.append }}
+  {% endif %}
+}

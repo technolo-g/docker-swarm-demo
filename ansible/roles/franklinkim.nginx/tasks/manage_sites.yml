@@ -1,0 +1,51 @@
+---
+
+- name: Creating webroots
+  file: >
+    dest=/var/www/{{ item.id }}/htdocs
+    state=directory
+  when: item.add_webroot is defined and item.add_webroot == true
+  with_items: nginx_sites
+  tags:
+    - web
+    - nginx-html
+    - manage
+
+- name: Creating sites
+  template: >
+    src={{ item.template|default('etc-nginx-sites-available-site.j2') }}
+    dest=/etc/nginx/sites-available/{{ item.id }}
+    owner=root
+    group=root
+    mode=0644
+  with_items: nginx_sites
+  tags:
+    - web
+    - nginx-html
+    - manage
+
+- name: Enabling sites
+  file: >
+    src=/etc/nginx/sites-available/{{ item.id }}
+    dest=/etc/nginx/sites-enabled/{{ item.id }}
+    state=link
+  when: item.state is not defined or item.state == 'present'
+  notify: restart nginx
+  with_items: nginx_sites
+  tags:
+    - web
+    - nginx
+    - manage_sites
+
+- name: Disabling sites
+  file: >
+    src=/etc/nginx/sites-available/{{ item.id }}
+    dest=/etc/nginx/sites-enabled/{{ item.id }}
+    state=absent
+  when: item.state is defined and item.state == 'absent'
+  notify: restart nginx
+  with_items: nginx_sites
+  tags:
+    - web
+    - nginx
+    - manage_sites

@@ -1,0 +1,11 @@
+---
+
+- name: Configuring service
+  service: >
+    name=nginx
+    state={{ nginx_service_state }}
+    enabled={{ nginx_service_enabled }}
+  tags:
+    - web
+    - nginx
+    - service
