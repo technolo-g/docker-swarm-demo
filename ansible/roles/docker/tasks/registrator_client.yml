@@ -16,6 +16,7 @@
      group=root
      mode=0644
   notify: restart registrator
+  when: start_docker_service == true
 
 - name: Start and enable registrator
   sudo: true
@@ -23,3 +24,4 @@
     name=registrator
     state=started
     enabled=true
+  when: start_docker_service == true

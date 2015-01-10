@@ -16,6 +16,6 @@
 
   roles:
     - role: base
+    - role: franklinkim.consul
     - role: docker
     - role: docker_swarm
-    - role: franklinkim.consul
