@@ -13,4 +13,3 @@ docker -H tcp://dockerhost02:2376 pull nginx:latest &
 docker -H tcp://dockerhost03:2376 pull nginx:latest &
 docker -H tcp://dockerhost04:2376 pull nginx:latest &
 docker -H tcp://dockerhost05:2376 pull nginx:latest
-
