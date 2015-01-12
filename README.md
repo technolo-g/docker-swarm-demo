@@ -7,7 +7,7 @@ manner:
     - Run a Registrator daemon pointed at Consul
 - 1 Docker Swarm host (dockerswarm01)
     - Runs Docker Swarm and listens to the Docker port
-    - Is the primary interface for the Docker cluster
+        - Is the primary interface for the Docker cluster
     - Runs Consul
         - Consul provides service discovery via its key/value store
         - Web UI available at http://dockerswarm01/ui
@@ -58,7 +58,8 @@ both the `dockerhosts` and `dockerswarm` groups to run TLS:
 - docker_port: 2376
 
 The certificates can be generated and the cluster provisioned using the
-following commands:
+following commands. **Please note:** The PKI is included in .gitignore and so
+will need to be regenerated each time this repo is cloned.
 ```
 # Generate SSL
 ./bin/gen_ssl.sh
