@@ -18,7 +18,7 @@ There are a few requirements to get
   - VirtualBox: https://www.virtualbox.org/wiki/Downloads or VMware: http://www.vmware.com/products/fusion
   - Ansible: `brew install ansible`
   - SSHPass: `brew install https://raw.github.com/eugeneoden/homebrew/eca9de1/Library/Formula/sshpass.rb`
-  - /etc/hosts: Allows us to call things by name.
+  - /etc/hosts: Allows us to call things by hostname:
 
     ```
     10.100.199.200 dockerswarm01
@@ -38,7 +38,7 @@ Just follow these simple instructions:
 vagrant up
 
 # Set your env variables to point at Vagrant
-source bin/env_vagrant
+source bin/env
 
 # Pull images down to the docker hosts.
 cd ansible/
@@ -66,10 +66,10 @@ following commands:
 vagrant up
 
 # Set your env to Vagrant + TLS
-source bin/env_vagrant_tls
+source bin/env_tls
 
 # Pull images down to the docker hosts.
-cd ansible/
+./bin/pull_images_tls.sh
 ansible-playbook vagrant_docker_images.yml
 
 # Interact with the cluster
@@ -88,5 +88,3 @@ Docker Swarm
 
 Consul
 - https://github.com/hashicorp/consul
-
-
