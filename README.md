@@ -15,7 +15,8 @@ manner:
 
 ## Requirements
 There are a few requirements to get
-  - Vagrant: https://www.vagrantup.com/downloads.html
+  - Vagrant (latest): https://www.vagrantup.com/downloads.html
+  - Vagrant hosts plugin: `vagrant plugin install vagrant-hosts`
   - VirtualBox: https://www.virtualbox.org/wiki/Downloads or VMware: http://www.vmware.com/products/fusion
   - Ansible: `brew install ansible`
   - SSHPass: `brew install https://raw.github.com/eugeneoden/homebrew/eca9de1/Library/Formula/sshpass.rb`
@@ -111,7 +112,8 @@ Swarm supports multiple discovery mechanisms including:
   to use currently. It relies on Consul's key/value store being located on
   the Swarm host (dockerswarm01) at /swarm. In addition to maintaining the Swarm
   cluster, this Consul host also is the endpoint Registrator uses for service
-  discovery under the path /services.
+  discovery under the path /services. You can view the cluster in Consul at:
+  http://dockerswarm01/ui/#/test/kv/swarm/
 
 #### Swarm Scheduling
 At this point in time, Swarm supports two scheduling modes with one in progress:
