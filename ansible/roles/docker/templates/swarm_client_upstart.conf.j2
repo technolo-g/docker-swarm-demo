@@ -7,6 +7,6 @@ post-stop exec sleep 10
 script
 /usr/local/bin/swarm join \
   --discovery {{ swarm_discovery_string }} \
-  --addr={{ ansible_default_ipv4['address'] }}:2375
+  --addr={{ ansible_eth1['ipv4']['address'] }}:2375
 end script
 respawn

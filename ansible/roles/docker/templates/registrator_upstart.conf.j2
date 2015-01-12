@@ -6,7 +6,7 @@ stop on runlevel [!2345]
 post-stop exec sleep 10
 script
 /usr/local/bin/registrator \
-  -ip={{ ansible_default_ipv4['address'] }} \
+  -ip={{ ansible_eth1['ipv4']['address'] }} \
   consul://{{ consul_host }}/services
 end script
 respawn
