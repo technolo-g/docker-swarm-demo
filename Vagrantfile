@@ -1,4 +1,5 @@
 VAGRANTFILE_API_VERSION = "2"
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'virtualbox'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |vagrant|
 
@@ -7,10 +8,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |vagrant|
     override.vm.box = "vmware-trusty64-20150105.box"
     override.vm.box_url = 'https://s3-us-west-2.amazonaws.com/technolo-g/vagrant-boxes/ubuntu/vmware-trusty64-20150105.box'
   end
-
   vagrant.vm.provider "vmware_fusion" do |v|
     v.vmx["memsize"] = '1024'
     v.vmx["numvcpus"] = '1'
+  end
+
+  # VirtualBox Configuration
+  vagrant.vm.provider "virtualbox" do |provider, override|
+    override.vm.box = "vbox-trusty64-20150111.box"
+    override.vm.box_url = 'https://s3-us-west-2.amazonaws.com/technolo-g/vagrant-boxes/ubuntu/vbox-trusty64-20150111.box'
+  end
+  vagrant.vm.provider "virtualbox" do |v|
+    v.memory = 1024
+    v.cpus = 1
   end
 
   # Machine Configuration
