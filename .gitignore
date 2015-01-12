@@ -1,4 +1,5 @@
 .idea
+.vagrant
 /tls
 /ansible/roles/docker/files/tls
 /ansible/roles/docker_swarm/files/tls
