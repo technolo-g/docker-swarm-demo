@@ -9,5 +9,3 @@ cluster_nodes:
   - dockerhost01
   - dockerhost02
   - dockerhost03
-  - dockerhost04
-  - dockerhost05

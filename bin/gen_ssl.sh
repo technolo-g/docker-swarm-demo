@@ -1,7 +1,11 @@
 #!/bin/bash
+# http://apetec.com/support/GenerateSAN-CSR.htm
+# https://rtcamp.com/wordpress-nginx/tutorials/ssl/multidomain-ssl-subject-alternative-names/
+# http://wiki.samat.org/CheatSheet/OpenSSL
 
-rm -rf tls
-mkdir -p tls
+rm -rf tls/*.pem || mkdir -p tls
+rm -rf tls/*.srl
+
 cd tls
 
 echo 'Creating CA (ca-key.pem, ca.pem)'
@@ -23,31 +27,21 @@ openssl rsa -passin pass:password -in swarm-key.pem -out swarm-key.pem
 cp -rp swarm-key.pem key.pem
 cp -rp swarm-cert.pem cert.pem
 
-echo 'Creating host certificates (dockerhost01-5-key.pem, dockerhost01-5-cert.pem)'
+echo 'Creating host certificates (dockerhost01-3-key.pem, dockerhost01-3-cert.pem)'
 openssl genrsa -passout pass:password -des3 -out dockerhost01-key.pem 2048
 openssl req -passin pass:password -subj '/CN=dockerhost01' -new -key dockerhost01-key.pem -out dockerhost01.csr
-openssl x509 -passin pass:password -req -days 365 -in dockerhost01.csr -CA ca.pem -CAkey ca-key.pem -out dockerhost01-cert.pem
+openssl x509 -passin pass:password -req -days 365 -in dockerhost01.csr -CA ca.pem -CAkey ca-key.pem -out dockerhost01-cert.pem -extfile openssl.cnf
 openssl rsa -passin pass:password -in dockerhost01-key.pem -out dockerhost01-key.pem
 
 openssl genrsa -passout pass:password -des3 -out dockerhost02-key.pem 2048
 openssl req -passin pass:password -subj '/CN=dockerhost02' -new -key dockerhost02-key.pem -out dockerhost02.csr
-openssl x509 -passin pass:password -req -days 365 -in dockerhost02.csr -CA ca.pem -CAkey ca-key.pem -out dockerhost02-cert.pem
+openssl x509 -passin pass:password -req -days 365 -in dockerhost02.csr -CA ca.pem -CAkey ca-key.pem -out dockerhost02-cert.pem -extfile openssl.cnf
 openssl rsa -passin pass:password -in dockerhost02-key.pem -out dockerhost02-key.pem
 
 openssl genrsa -passout pass:password -des3 -out dockerhost03-key.pem 2048
 openssl req -passin pass:password -subj '/CN=dockerhost03' -new -key dockerhost03-key.pem -out dockerhost03.csr
-openssl x509 -passin pass:password -req -days 365 -in dockerhost03.csr -CA ca.pem -CAkey ca-key.pem -out dockerhost03-cert.pem
+openssl x509 -passin pass:password -req -days 365 -in dockerhost03.csr -CA ca.pem -CAkey ca-key.pem -out dockerhost03-cert.pem -extfile openssl.cnf
 openssl rsa -passin pass:password -in dockerhost03-key.pem -out dockerhost03-key.pem
-
-openssl genrsa -passout pass:password -des3 -out dockerhost04-key.pem 2048
-openssl req -passin pass:password -subj '/CN=dockerhost04' -new -key dockerhost04-key.pem -out dockerhost04.csr
-openssl x509 -passin pass:password -req -days 365 -in dockerhost04.csr -CA ca.pem -CAkey ca-key.pem -out dockerhost04-cert.pem
-openssl rsa -passin pass:password -in dockerhost04-key.pem -out dockerhost04-key.pem
-
-openssl genrsa -passout pass:password -des3 -out dockerhost05-key.pem 2048
-openssl req -passin pass:password -subj '/CN=dockerhost05' -new -key dockerhost05-key.pem -out dockerhost05.csr
-openssl x509 -passin pass:password -req -days 365 -in dockerhost05.csr -CA ca.pem -CAkey ca-key.pem -out dockerhost05-cert.pem
-openssl rsa -passin pass:password -in dockerhost05-key.pem -out dockerhost05-key.pem
 
 rm -f *.csr
 

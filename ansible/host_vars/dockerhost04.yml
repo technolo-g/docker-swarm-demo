@@ -1,6 +1,0 @@
----
-
-docker_swarm_tags:
-  - 'status=master'
-  - 'disk=ssd'
-  - 'zone=external'
