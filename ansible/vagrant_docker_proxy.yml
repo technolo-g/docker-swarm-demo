@@ -1,0 +1,8 @@
+---
+
+- hosts: vagrant_dockerproxy
+  sudo: False
+  remote_user: "{{ user }}"
+  roles:
+    - role: base
+    - role: consul_template

@@ -10,3 +10,6 @@ dockerhost05 ansible_ssh_private_key_file=../.vagrant/machines/dockerhost05/virt
 
 [vagrant_dockerswarm]
 dockerswarm01 ansible_ssh_private_key_file=../.vagrant/machines/dockerswarm01/virtualbox/private_key
+
+[vagrant_dockerproxy]
+dockerproxy01 ansible_ssh_private_key_file=../.vagrant/machines/dockerswarm01/virtualbox/private_key

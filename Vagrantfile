@@ -52,6 +52,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |vagrant|
     end
   end
 
+  vagrant.vm.define "dockerproxy01" do |config|
+    config.vm.hostname = "dockerproxy01"
+    config.vm.network "private_network", ip: "10.100.199.31"
+    config.vm.provision :hosts
+    config.vm.provision :ansible do |ansible|
+      ansible.playbook = 'ansible/vagrant_docker_proxy.yml'
+      ansible.groups   = {'vagrant_dockerproxy' => ["dockerproxy01"], 'local' => ['localhost']}
+      ansible.raw_arguments = '--timeout=30'
+      ansible.host_key_checking = false
+    end
+  end
+
   # Make sure all hosts have all entries
   (1..5).each do |i|
     vagrant.vm.define "dockerhost0#{i}" do |config|
