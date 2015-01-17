@@ -15,7 +15,7 @@ oid_section		= new_oids
 # To use this configuration file with the "-extfile" option of the
 # "openssl x509" utility, name here the section containing the
 # X.509v3 extensions to use:
-# extensions		=
+extensions		= v3_req
 # (Alternatively, use a configuration file that has only
 # X.509v3 extensions in its main [= default] section.)
 
@@ -103,7 +103,7 @@ emailAddress		= optional
 
 ####################################################################
 [ req ]
-default_bits		= 2048
+default_bits		= 1024
 default_keyfile 	= privkey.pem
 distinguished_name	= req_distinguished_name
 attributes		= req_attributes
@@ -113,7 +113,7 @@ x509_extensions	= v3_ca	# The extentions to add to the self signed cert
 # input_password = secret
 # output_password = secret
 
-# This sets a mask for permitted string types. There are several options.
+# This sets a mask for permitted string types. There are several options. 
 # default: PrintableString, T61String, BMPString.
 # pkix	 : PrintableString, BMPString (PKIX recommendation before 2004)
 # utf8only: only UTF8Strings (PKIX recommendation after 2004).
@@ -217,23 +217,15 @@ authorityKeyIdentifier=keyid,issuer
 [ v3_req ]
 
 # Extensions to add to a certificate request
-
 basicConstraints = CA:FALSE
 keyUsage = nonRepudiation, digitalSignature, keyEncipherment
 subjectAltName = @alt_names
-
-[alt_names]
-IP.1 = 10.100.199.200
-IP.2 = 10.100.199.201
-IP.3 = 10.100.199.202
-IP.4 = 10.100.199.203
-IP.5 = 10.100.199.204
-IP.6 = 10.100.199.205
 
 [ v3_ca ]
 
 
 # Extensions for a typical CA
+subjectAltName = @alt_names
 
 
 # PKIX recommendation.
@@ -357,3 +349,11 @@ tsa_name		= yes	# Must the TSA name be included in the reply?
 				# (optional, default: no)
 ess_cert_id_chain	= no	# Must the ESS cert id chain be included?
 				# (optional, default: no)
+
+[ alt_names ]
+IP.1 = 10.100.199.200
+IP.2 = 10.100.199.201
+IP.3 = 10.100.199.202
+IP.4 = 10.100.199.203
+IP.5 = 10.100.199.204
+IP.6 = 10.100.199.205
