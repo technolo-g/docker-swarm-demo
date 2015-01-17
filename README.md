@@ -36,8 +36,8 @@ Everything can be tried out using Vagrant once the pre-reqs have been installed.
 Just follow these simple instructions:
 
 ```
-# Stand up the environment
-vagrant up
+# Stand up the environment and provision the hostfile entries
+vagrant up && vagrant provision --provision-with hosts
 
 # Set your env variables to point at Vagrant
 source bin/env
