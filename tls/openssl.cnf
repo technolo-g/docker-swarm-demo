@@ -122,7 +122,7 @@ x509_extensions	= v3_ca	# The extentions to add to the self signed cert
 # WARNING: ancient versions of Netscape crash on BMPStrings or UTF8Strings.
 string_mask = utf8only
 
-# req_extensions = v3_req # The extensions to add to a certificate request
+req_extensions = v3_req # The extensions to add to a certificate request
 
 [ req_distinguished_name ]
 countryName			= Country Name (2 letter code)
@@ -220,6 +220,15 @@ authorityKeyIdentifier=keyid,issuer
 
 basicConstraints = CA:FALSE
 keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+subjectAltName = @alt_names
+
+[alt_names]
+IP.1 = 10.100.199.200
+IP.2 = 10.100.199.201
+IP.3 = 10.100.199.202
+IP.4 = 10.100.199.203
+IP.5 = 10.100.199.204
+IP.6 = 10.100.199.205
 
 [ v3_ca ]
 
