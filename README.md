@@ -1,7 +1,7 @@
 ## Docker Swarm POC
 This repository contains a POC of Docker Swarm configured in the following
 manner:
-- 5 Docker hosts (dockerhost[01:05])
+- 3 Docker hosts (dockerhost[01:03])
     - Run latest Docker daemon
     - Run a Docker Swarm daemon pointed at Consul
     - Run a Registrator daemon pointed at Consul
@@ -27,8 +27,6 @@ There are a few requirements to get
     10.100.199.201 dockerhost01
     10.100.199.202 dockerhost02
     10.100.199.203 dockerhost03
-    10.100.199.204 dockerhost04
-    10.100.199.205 dockerhost05
     ```
 
 ## How to use it

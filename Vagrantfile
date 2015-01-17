@@ -24,7 +24,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |vagrant|
 
   # Machine Configuration
   # Docker Hosts
-  (1..5).each do |i|
+  (1..3).each do |i|
     vagrant.vm.define "dockerhost0#{i}" do |config|
       config.vm.hostname = "dockerhost0#{i}"
       config.vm.network "private_network", ip: "10.100.199.20#{i}"
@@ -65,7 +65,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |vagrant|
   end
 
   # Make sure all hosts have all entries
-  (1..5).each do |i|
+  (1..3).each do |i|
     vagrant.vm.define "dockerhost0#{i}" do |config|
       config.vm.provision :hosts
     end
