@@ -3,8 +3,6 @@
 # https://rtcamp.com/wordpress-nginx/tutorials/ssl/multidomain-ssl-subject-alternative-names/
 # http://wiki.samat.org/CheatSheet/OpenSSL
 
-export OPENSSL_CONF=openssl.cnf
-
 rm -rf tls/*.pem || mkdir -p tls
 rm -rf tls/*.srl
 
