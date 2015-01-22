@@ -6,7 +6,7 @@ stop on runlevel [!2345]
 post-stop exec sleep 10
 script
 /usr/local/bin/swarm join \
-  --discovery {{ swarm_discovery_string }} \
-  --addr={{ ansible_eth1['ipv4']['address'] }}:{{ docker_port }}
+  --addr={{ ansible_eth1['ipv4']['address'] }}:{{ docker_port }} \
+  {{ swarm_discovery_string }} \
 end script
 respawn

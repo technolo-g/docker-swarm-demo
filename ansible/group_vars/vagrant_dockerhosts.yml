@@ -2,6 +2,8 @@
 
 user: vagrant
 consul_host: dockerswarm01
+use_tls: true
+docker_port: 2376
 
 dns_servers:
   - 8.8.8.8

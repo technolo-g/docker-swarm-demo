@@ -2,6 +2,8 @@
 
 user: vagrant
 start_docker_service: False
+use_tls: true
+docker_port: 2376
 packing_strategy: random
 consul_host: dockerswarm01
 
