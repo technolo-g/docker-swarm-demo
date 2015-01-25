@@ -7,6 +7,6 @@ post-stop exec sleep 10
 script
 /usr/local/bin/swarm join \
   --addr={{ ansible_eth1['ipv4']['address'] }}:{{ docker_port }} \
-  {{ swarm_discovery_string }} \
+  --discovery {{ swarm_discovery_string }} \
 end script
 respawn
