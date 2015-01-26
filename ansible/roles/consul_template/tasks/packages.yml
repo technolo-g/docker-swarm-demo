@@ -1,0 +1,8 @@
+---
+
+- name: Install the consul-template binary
+  sudo: True
+  get_url: >
+    url=https://s3-us-west-2.amazonaws.com/technolo-g/bins/ubuntu/trusty/consul-template
+    dest=/usr/local/bin/consul-template
+    mode=0775
