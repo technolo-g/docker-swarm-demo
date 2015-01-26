@@ -135,8 +135,8 @@ could be:
 ```
 docker run -d \
   -p 80 \
-  -e constraint:zone=external \
-  -e constraint:disk=ssd \
+  -e constraint:zone==external \
+  -e constraint:disk==ssd \
   -t nginx:latest
 ```
 
