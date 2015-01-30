@@ -10,5 +10,4 @@ dns_servers:
 docker_images:
   - ubuntu
   - nginx
-  - mbajor/webapp
 
