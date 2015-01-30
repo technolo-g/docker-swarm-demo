@@ -9,3 +9,10 @@
   roles:
     - role: base
     - role: docker
+  tasks:
+    - name: Pull images
+      sudo: True
+      command: >
+        docker pull {{ item }}:latest
+      with_items: docker_images
+
