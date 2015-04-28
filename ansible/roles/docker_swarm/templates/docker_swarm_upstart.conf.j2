@@ -13,6 +13,6 @@ script
 {% endif %}
     -H tcp://0.0.0.0:{{ docker_port }} \
     --strategy {{  packing_strategy }} \
-    --discovery {{ swarm_discovery_string }}
+    {{ swarm_discovery_string }}
 end script
 
